@@ -9,7 +9,7 @@ const CourseCard = ({ course }) => {
           <img
             className="w-full h-[250px] p-6 rounded-lg"
             src={image}
-            alt="product image"
+            alt="course image"
           />
         </a>
         <div className="px-5 pb-5">
@@ -22,7 +22,7 @@ const CourseCard = ({ course }) => {
             <div className="flex items-center space-x-1 rtl:space-x-reverse font-bold">
               {duration}
             </div>
-            <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ms-3">
+            <span className="bg-gray-100 text-[#0FDC8D] text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ms-3">
               {category}
             </span>
           </div>
@@ -31,12 +31,12 @@ const CourseCard = ({ course }) => {
           </div>
           <div className="flex items-center justify-between">
             <span className="text-3xl font-bold text-gray-900 dark:text-white">
-              {price}
+              $ {price}
             </span>
 
             <button
               href="#"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white bg-[#0FDC8D] hover:bg-[#137951] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Course Details
             </button>
