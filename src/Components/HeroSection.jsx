@@ -1,7 +1,8 @@
 import React from "react";
-import heroimg from "../assets/home-image.png";
-import MyContainer from "./MyContainer";
 
+import MyContainer from "./MyContainer";
+import image from "../assets/home-image.png";
+import { Link } from "react-router";
 const HeroSection = () => {
   return (
     <div className="min-h-screen bg-white overflow-hidden relative">
@@ -32,7 +33,8 @@ const HeroSection = () => {
               </p>
 
               <div className="mt-10">
-                <a
+                <Link
+                  to={"/courses"}
                   href="#"
                   className="inline-flex items-center text-sm font-semibold uppercase tracking-wider text-green-500 transition duration-150 ease-in-out group"
                 >
@@ -51,16 +53,14 @@ const HeroSection = () => {
                       d="M17 8l4 4m0 0l-4 4m4-4H3"
                     ></path>
                   </svg>
-                </a>
+                </Link>
               </div>
             </div>
 
             <div className="lg:w-1/2 flex justify-center lg:justify-end relative h-[500px] md:h-[600px] lg:h-[700px]">
-              {" "}
               <div className="relative w-full h-full max-w-lg lg:max-w-none">
-                {" "}
                 <img
-                  src={heroimg}
+                  src={image}
                   alt="Smiling student sitting with books"
                   className="absolute bottom-0 right-0 w-full h-[500px] md:h-[600px] lg:h-[700px] object-contain object-bottom relative z-10" /* Adjusted size and positioning */
                   style={{
@@ -74,7 +74,6 @@ const HeroSection = () => {
                 />
                 <div className="absolute top-[30%] left-[20%] w-[500px] h-[500px] bg-[#FFCFC8] rounded-full opacity-60 z-0"></div>
                 <div className="absolute right-0 top-16 w-36 p-3 bg-white shadow-xl rounded-lg border border-gray-200 z-20">
-                  {" "}
                   <div className="flex items-center space-x-2">
                     <svg
                       className="w-5 h-5 text-blue-500"
@@ -97,7 +96,6 @@ const HeroSection = () => {
                   </div>
                 </div>
                 <div className="absolute left-[-5%] top-1/2 -translate-y-1/2 w-36 p-3 bg-white shadow-xl rounded-lg border border-gray-200 z-20">
-                  {" "}
                   <div className="flex items-center space-x-2">
                     <svg
                       className="w-5 h-5 text-green-500"

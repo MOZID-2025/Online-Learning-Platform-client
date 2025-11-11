@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router";
 
 const CourseCard = ({ course }) => {
-  const { title, image, price, duration, category, description } = course;
+  const { title, image, price, duration, category, description, _id } = course;
   return (
     <div>
-      <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+      <div className="w-full max-w-2xl bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
           <img
             className="w-full h-[250px] p-6 rounded-lg"
@@ -34,12 +35,13 @@ const CourseCard = ({ course }) => {
               $ {price}
             </span>
 
-            <button
+            <Link
+              to={`/course-details/${_id}`}
               href="#"
               className="text-white bg-[#0FDC8D] hover:bg-[#137951] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Course Details
-            </button>
+            </Link>
           </div>
         </div>
       </div>
