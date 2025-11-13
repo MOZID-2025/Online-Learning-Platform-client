@@ -1,4 +1,5 @@
 import React from "react";
+import { FaFacebook, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -40,18 +41,18 @@ const Footer = () => {
 
                 {/* Social Icon Placeholders (Repeat for each icon: FB, IG, Twitter, Pinterest) */}
                 <a
-                  href="#"
+                  href="https://www.facebook.com/"
                   aria-label="Facebook"
-                  className="text-gray-400 hover:text-green-400 transition"
+                  className=" hover:text-green-400 transition"
                 >
-                  <svg
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
-                  </svg>
+                  <FaFacebook />
+                </a>
+                <a
+                  href="https://www.linkedin.com/feed/"
+                  aria-label="Linkedin"
+                  className="hover:text-green-400 transition"
+                >
+                  <FaLinkedin />
                 </a>
                 {/* ... other social links ... */}
               </div>

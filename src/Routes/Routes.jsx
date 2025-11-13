@@ -7,6 +7,7 @@ import CourseDetails from "../Pages/CourseDetails";
 import UpdateCourse from "../Pages/UpdateCourse";
 import SignUp from "../Pages/SignUp";
 import SignIn from "../Pages/SignIn";
+import PrivateRoute from "../assets/PrivateRoute/PrivateRoute";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -28,13 +29,21 @@ export const router = createBrowserRouter([
   },
   {
     path: "/course-details/:id",
-    element: <CourseDetails />,
+    element: (
+      <PrivateRoute>
+        <CourseDetails />,
+      </PrivateRoute>
+    ),
     loader: ({ params }) => fetch(`http://localhost:3000/courses/${params.id}`),
     hydrateFallbackElement: <p>Loading</p>,
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <PrivateRoute>
+        <Dashboard />,
+      </PrivateRoute>
+    ),
   },
   {
     path: "/update-course/:id",

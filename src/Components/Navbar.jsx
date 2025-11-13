@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
 import MyContainer from "./MyContainer";
+import { AuthContext } from "../Context/AuthContext";
+import { toast } from "react-toastify";
+import logo from "../assets/logo.jpg";
+import { HashLoader } from "react-spinners";
 // import { toast } from "react-toastify";
 
 const Navbar = () => {
+  const { user, signOutFunc, setUser, loading, setLoading } =
+    useContext(AuthContext);
+  console.log(user);
+
+  //signout
+  const handleSignOut = () => {
+    signOutFunc()
+      .then(() => {
+        toast.success("Signout successful");
+        setUser(null);
+      })
+      .catch((e) => {
+        toast.error(e.message);
+      });
+  };
   const link = (
     <>
       <li className="bg-[rgba(15,220,141,0.1)] font-bold mr-5 rounded-1xl">
@@ -22,19 +41,21 @@ const Navbar = () => {
           All Courses
         </NavLink>
       </li>
-      <li className="bg-[rgba(15,220,141,0.1)] font-bold">
-        <NavLink
-          to="/dashboard"
-          className={({ isActive }) =>
-            isActive ? "text-[#0FDC8D] rounded-1xl" : ""
-          }
-        >
-          Dashboard
-        </NavLink>
-      </li>
+      {user && (
+        <li className="bg-[rgba(15,220,141,0.1)] font-bold">
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              isActive ? "text-[#0FDC8D] rounded-1xl" : ""
+            }
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
     </>
   );
-
+  console.log(loading);
   return (
     <div>
       <MyContainer>
@@ -69,17 +90,62 @@ const Navbar = () => {
                 {link}
               </ul>
             </div>
-            <Link to="/" className="text-xl">
-              E Learning
+            <Link to="/" className="">
+              <img className="w-25 h-15" src={logo} alt="" />
             </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{link}</ul>
           </div>
           <div className="navbar-end">
-            <button className="btn btn-active btn-success text-white">
-              Login
-            </button>
+            {loading ? (
+              <HashLoader />
+            ) : user ? (
+              <div className="text-center space-y-3 flex items-center gap-4">
+                <button
+                  className=" btn-circle"
+                  popoverTarget="popover-1"
+                  style={{ anchorName: "--anchor-1" }}
+                >
+                  <img
+                    src={
+                      user?.photoURL ||
+                      `https://ui-avatars.com/api/?name=${
+                        user?.displayName || "User"
+                      }&background=random`
+                    }
+                    alt="User Photo"
+                    className="h-15 w-15 rounded-full mx-auto"
+                  />
+                </button>
+
+                <div
+                  className="dropdown menu w-52 rounded-box bg-base-100 shadow-sm"
+                  popover="auto"
+                  id="popover-1"
+                  style={
+                    {
+                      positionAnchor: "--anchor-1",
+                    } 
+                  }
+                >
+                  <h2 className="text-xl font-semibold">{user?.displayName}</h2>
+                  <p className="">{user?.email}</p>
+                  <button className="my-btn" onClick={handleSignOut}>
+                    Signout
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <button>
+                <Link
+                  to={"/signin"}
+                  className="btn btn-active btn-success text-white"
+                >
+                  Signin
+                </Link>
+              </button>
+            )}
           </div>
         </div>
       </MyContainer>
