@@ -1,6 +1,8 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddNewCourse = () => {
   const handleSubmit = (e) => {
@@ -15,8 +17,6 @@ const AddNewCourse = () => {
       description: e.target.description.value,
     };
 
-    console.log(formdata);
-
     fetch("http://localhost:3000/courses", {
       method: "POST",
       headers: {
@@ -26,17 +26,20 @@ const AddNewCourse = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        toast.success("✅ Successfully added a new course!");
         e.target.reset();
+        console.log(data);
       })
       .catch((err) => {
+        toast.error("❌ Failed to add course. Try again!");
         console.log(err);
       });
   };
+
   return (
     <div>
       <Navbar />
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-lg">
           <h2 className="text-3xl font-bold text-center text-[#0FDC8D] mb-8">
             Add New Course
@@ -51,6 +54,7 @@ const AddNewCourse = () => {
                 name="title"
                 type="text"
                 placeholder="Enter course title"
+                required
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#0FDC8D]"
               />
             </div>
@@ -63,6 +67,7 @@ const AddNewCourse = () => {
                 name="image"
                 type="text"
                 placeholder="https://example.com/course.jpg"
+                required
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#0FDC8D]"
               />
             </div>
@@ -75,6 +80,7 @@ const AddNewCourse = () => {
                 name="price"
                 type="number"
                 placeholder="Enter course price"
+                required
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#0FDC8D]"
               />
             </div>
@@ -87,6 +93,7 @@ const AddNewCourse = () => {
                 name="duration"
                 type="text"
                 placeholder="e.g. 4 weeks, 10 hours"
+                required
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#0FDC8D]"
               />
             </div>
@@ -97,9 +104,10 @@ const AddNewCourse = () => {
               </label>
               <select
                 name="category"
+                required
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#0FDC8D]"
               >
-                <option>Select Category</option>
+                <option value="">Select Category</option>
                 <option>Web Development</option>
                 <option>Mobile App</option>
                 <option>Design</option>
@@ -116,12 +124,16 @@ const AddNewCourse = () => {
                 name="description"
                 rows="4"
                 placeholder="Write course description..."
+                required
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#0FDC8D]"
               ></textarea>
             </div>
 
             <div className="pt-4">
-              <button className="cursor-pointer w-full bg-[#0FDC8D] text-white font-semibold py-2 rounded-lg hover:bg-[#0FDC8D]">
+              <button
+                type="submit"
+                className="cursor-pointer w-full bg-[#0FDC8D] text-white font-semibold py-2 rounded-lg hover:bg-[#0FCF75] transition-colors duration-300"
+              >
                 Add Course
               </button>
             </div>
@@ -129,6 +141,17 @@ const AddNewCourse = () => {
         </div>
       </div>
       <Footer />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

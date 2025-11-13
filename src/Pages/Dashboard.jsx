@@ -10,60 +10,69 @@ import { HashLoader } from "react-spinners";
 const Dashboard = () => {
   const { user, loading } = useContext(AuthContext);
 
+  const userInfo = user && (
+    <div className="flex flex-col items-center gap-3 text-center">
+      <img
+        src={
+          user.photoURL ||
+          `https://ui-avatars.com/api/?name=${
+            user.displayName || "User"
+          }&background=random`
+        }
+        alt="User Photo"
+        className="h-20 w-20 rounded-full mx-auto"
+      />
+      <h2 className="text-xl font-semibold">{user.displayName}</h2>
+      <p className="text-gray-600">{user.email}</p>
+    </div>
+  );
+
+  const actionButtons = (
+    <div className="flex flex-wrap gap-4 mt-6 justify-center pb-20">
+      <Link to={"/dashboard"} className="btn btn-active btn-success text-white">
+        My Enrolled Courses
+      </Link>
+      <Link
+        to={"/addNewCourse"}
+        className="btn btn-active btn-success text-white"
+      >
+        Add Course
+      </Link>
+      <Link to={"/dashboard"} className="btn btn-active btn-success text-white">
+        My Added Courses
+      </Link>
+    </div>
+  );
+
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
       <MyContainer>
-        <div>
-          <Navbar></Navbar>
-          <h2 className="text-center font-bold text-3xl pt-5">My Dashboard</h2>
-        </div>
+        <header className="text-center py-5">
+          <h1 className="text-3xl font-bold">My Dashboard</h1>
+        </header>
 
         {loading ? (
-          <HashLoader />
-        ) : user ? (
-          <div className="text-center space-y-3 flex items-center gap-4">
-            <div popoverTarget="popover-1" style={{ anchorName: "--anchor-1" }}>
-              <img
-                src={
-                  user?.photoURL ||
-                  `https://ui-avatars.com/api/?name=${
-                    user?.displayName || "User"
-                  }&background=random`
-                }
-                alt="User Photo"
-                className="h-20 w-20 mx-auto"
-              />
-            </div>
-
-            <div
-              style={{
-                positionAnchor: "--anchor-1",
-              }}
-            >
-              <h2 className="text-xl font-semibold">{user?.displayName}</h2>
-              <p className="">{user?.email}</p>
-            </div>
+          <div className="flex justify-center py-10">
+            <HashLoader />
           </div>
+        ) : user ? (
+          <>
+            {userInfo}
+            {actionButtons}
+          </>
         ) : (
-          <button>
+          <div className="flex justify-center py-10">
             <Link
               to={"/signin"}
               className="btn btn-active btn-success text-white"
             >
-              Signin
+              Sign In
             </Link>
-          </button>
+          </div>
         )}
-        <div className="mb-10">
-          <Link
-            to={"/addNewCourse"}
-            className="btn btn-active btn-success text-white"
-          >
-            Add New Course
-          </Link>
-        </div>
       </MyContainer>
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 };
