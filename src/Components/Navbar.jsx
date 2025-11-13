@@ -8,8 +8,7 @@ import { HashLoader } from "react-spinners";
 // import { toast } from "react-toastify";
 
 const Navbar = () => {
-  const { user, signOutFunc, setUser, loading, setLoading } =
-    useContext(AuthContext);
+  const { user, signOutFunc, setUser, loading } = useContext(AuthContext);
   console.log(user);
 
   //signout
@@ -123,11 +122,9 @@ const Navbar = () => {
                   className="dropdown menu w-52 rounded-box bg-base-100 shadow-sm"
                   popover="auto"
                   id="popover-1"
-                  style={
-                    {
-                      positionAnchor: "--anchor-1",
-                    } 
-                  }
+                  style={{
+                    positionAnchor: "--anchor-1",
+                  }}
                 >
                   <h2 className="text-xl font-semibold">{user?.displayName}</h2>
                   <p className="">{user?.email}</p>

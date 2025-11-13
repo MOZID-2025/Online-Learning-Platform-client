@@ -8,10 +8,13 @@ import UpdateCourse from "../Pages/UpdateCourse";
 import SignUp from "../Pages/SignUp";
 import SignIn from "../Pages/SignIn";
 import PrivateRoute from "../assets/PrivateRoute/PrivateRoute";
+import ErrorPage from "../Pages/ErrorPage";
+import AddNewCourse from "../Pages/AddNewCourse";
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -29,13 +32,13 @@ export const router = createBrowserRouter([
   },
   {
     path: "/course-details/:id",
+    loader: ({ params }) => fetch(`http://localhost:3000/courses/${params.id}`),
+    hydrateFallbackElement: <p>Loading</p>,
     element: (
       <PrivateRoute>
         <CourseDetails />,
       </PrivateRoute>
     ),
-    loader: ({ params }) => fetch(`http://localhost:3000/courses/${params.id}`),
-    hydrateFallbackElement: <p>Loading</p>,
   },
   {
     path: "/dashboard",
@@ -58,5 +61,9 @@ export const router = createBrowserRouter([
   {
     path: "/signin",
     element: <SignIn />,
+  },
+  {
+    path: "/addNewCourse",
+    element: <AddNewCourse />,
   },
 ]);
