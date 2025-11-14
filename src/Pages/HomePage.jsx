@@ -170,7 +170,6 @@ const HomePage = () => {
               </div>
             </motion.div>
           </motion.div>
-
           <TopInstructors />
         </MyContainer>
       </div>
