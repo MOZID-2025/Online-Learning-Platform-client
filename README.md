@@ -1,16 +1,12 @@
-# React + Vite
+Website Name: Online Learning Platform
+Live site: https://online-learning-platform-a-11.netlify.app/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Expert-Led Courses: Learn directly from industry professionals with years of real-world experience.
 
-Currently, two official plugins are available:
+- Flexible Learning Schedule: Access your lessons anytime, anywhere, and learn at your own pace.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Interactive & Practical Lessons: Gain hands-on skills through projects, quizzes, and real-world examples.
 
-## React Compiler
+- Career-Focused Curriculum: Each course is designed to boost your employability and prepare you for job success.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Certificates of Achievement: Earn accredited certificates to showcase your new skills to employers and clients.
