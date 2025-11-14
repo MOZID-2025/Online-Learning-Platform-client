@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Link } from "react-router";
-
 import Navbar from "../Components/Navbar";
 import MyContainer from "../Components/MyContainer";
 import Footer from "../Components/Footer";
