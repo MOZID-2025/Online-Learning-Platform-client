@@ -101,6 +101,9 @@ const Navbar = () => {
               <HashLoader />
             ) : user ? (
               <div className="text-center space-y-3 flex items-center gap-4">
+                <h2 className="text-xl font-semibold">
+                  Hey, {user?.displayName}
+                </h2>
                 <button
                   className=" btn-circle"
                   popoverTarget="popover-1"
