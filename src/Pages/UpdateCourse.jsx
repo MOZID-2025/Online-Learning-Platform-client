@@ -29,11 +29,14 @@ const UpdateCourse = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:3000/courses/${_id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(courseData),
-    })
+    fetch(
+      `https://online-learning-platform-server-ten.vercel.app/courses/${_id}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(courseData),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

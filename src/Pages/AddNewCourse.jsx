@@ -17,7 +17,7 @@ const AddNewCourse = () => {
       description: e.target.description.value,
     };
 
-    fetch("http://localhost:3000/courses", {
+    fetch("https://online-learning-platform-server-ten.vercel.app/courses", {
       method: "POST",
       headers: {
         "content-type": "application/json",

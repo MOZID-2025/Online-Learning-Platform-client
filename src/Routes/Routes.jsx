@@ -19,7 +19,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
-        loader: () => fetch("http://localhost:3000/features-course"),
+        loader: () =>
+          fetch(
+            "https://online-learning-platform-server-ten.vercel.app/features-course"
+          ),
         hydrateFallbackElement: <p>Loading</p>,
       },
     ],
@@ -27,12 +30,16 @@ export const router = createBrowserRouter([
   {
     path: "/courses",
     element: <Courses />,
-    loader: () => fetch("http://localhost:3000/courses"),
+    loader: () =>
+      fetch("https://online-learning-platform-server-ten.vercel.app/courses"),
     hydrateFallbackElement: <p>Loading</p>,
   },
   {
     path: "/course-details/:id",
-    loader: ({ params }) => fetch(`http://localhost:3000/courses/${params.id}`),
+    loader: ({ params }) =>
+      fetch(
+        `https://online-learning-platform-server-ten.vercel.app/courses/${params.id}`
+      ),
     hydrateFallbackElement: <p>Loading</p>,
     element: (
       <PrivateRoute>
@@ -51,7 +58,10 @@ export const router = createBrowserRouter([
   {
     path: "/update-course/:id",
     element: <UpdateCourse />,
-    loader: ({ params }) => fetch(`http://localhost:3000/courses/${params.id}`),
+    loader: ({ params }) =>
+      fetch(
+        `https://online-learning-platform-server-ten.vercel.app/courses/${params.id}`
+      ),
     hydrateFallbackElement: <p>Loading</p>,
   },
   {
