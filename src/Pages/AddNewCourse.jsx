@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AuthContext } from "../Context/AuthContext";
 
 const AddNewCourse = () => {
+  const { user } = useContext(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -15,6 +17,7 @@ const AddNewCourse = () => {
       duration: e.target.duration.value,
       category: e.target.category.value,
       description: e.target.description.value,
+      email: user.email,
     };
 
     fetch("https://online-learning-platform-server-ten.vercel.app/courses", {

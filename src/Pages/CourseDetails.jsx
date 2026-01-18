@@ -14,18 +14,6 @@ const CourseDetails = () => {
 
   const navigate = useNavigate();
 
-  const handleEnroll = () => {
-    toast.success("You have successfully enrolled in the course!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-
   const handleDelete = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -61,6 +49,41 @@ const CourseDetails = () => {
           });
       }
     });
+  };
+
+  const handleEnroll = () => {
+    const enrollInfo = {
+      courseId: _id,
+      title,
+      price,
+      image,
+      description,
+      duration,
+      category,
+      email: "booksummery2025@gmail.com",
+    };
+
+    fetch(
+      "https://online-learning-platform-server-ten.vercel.app/my-enroll-courses",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(enrollInfo),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === "already enrolled") {
+          toast.info("You already enrolled this course");
+        } else {
+          toast.success("You have successfully enrolled in the course!");
+        }
+      })
+      .catch(() => {
+        toast.error("Something went wrong");
+      });
   };
 
   return (

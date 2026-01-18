@@ -28,7 +28,10 @@ const Dashboard = () => {
 
   const actionButtons = (
     <div className="flex flex-wrap gap-4 mt-6 justify-center pb-20">
-      <Link to={"/dashboard"} className="btn btn-active btn-success text-white">
+      <Link
+        to={"/my-enroll-courses"}
+        className="btn btn-active btn-success text-white"
+      >
         My Enrolled Courses
       </Link>
       <Link
@@ -37,7 +40,10 @@ const Dashboard = () => {
       >
         Add Course
       </Link>
-      <Link to={"/dashboard"} className="btn btn-active btn-success text-white">
+      <Link
+        to={"/my-courses"}
+        className="btn btn-active btn-success text-white"
+      >
         My Added Courses
       </Link>
     </div>

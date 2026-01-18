@@ -10,6 +10,8 @@ import SignIn from "../Pages/SignIn";
 import PrivateRoute from "../assets/PrivateRoute/PrivateRoute";
 import ErrorPage from "../Pages/ErrorPage";
 import AddNewCourse from "../Pages/AddNewCourse";
+import MyCourses from "../Pages/MyCourses";
+import MyEnrollCourse from "../Pages/MyEnrollCourse";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -33,6 +35,14 @@ export const router = createBrowserRouter([
     loader: () =>
       fetch("https://online-learning-platform-server-ten.vercel.app/courses"),
     hydrateFallbackElement: <p>Loading</p>,
+  },
+  {
+    path: "/my-courses",
+    element: <MyCourses />,
+  },
+  {
+    path: "/my-enroll-courses",
+    element: <MyEnrollCourse />,
   },
   {
     path: "/course-details/:id",
