@@ -1,29 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import MyContainer from "../Components/MyContainer";
 import Navbar from "../Components/Navbar";
 import CourseCard from "../Components/CourseCard";
 import Footer from "../Components/Footer";
+import { AuthContext } from "../Context/AuthContext";
 
 const MyCourses = () => {
+  const { user, loading } = useContext(AuthContext);
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  // Replace this with auth user email if you have authentication
-  const userEmail = "booksummery2025@gmail.com";
+  const [pageLoading, setPageLoading] = useState(true);
 
   useEffect(() => {
+    if (!user?.email) return;
+
     fetch(
-      `https://online-learning-platform-server-ten.vercel.app/my-courses?email=${userEmail}`
+      `https://online-learning-platform-server-ten.vercel.app/my-courses?email=${user.email}`
     )
       .then((res) => res.json())
       .then((courses) => {
-        console.log("FRONTEND DATA 👉", courses);
+        console.log("MY COURSES 👉", courses);
         setData(courses);
-        setLoading(false);
+        setPageLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setPageLoading(false);
       });
-  }, []);
+  }, [user]);
 
-  if (loading) {
+  if (loading || pageLoading) {
     return (
       <div className="text-center py-20 text-xl font-semibold">
         Loading your courses...

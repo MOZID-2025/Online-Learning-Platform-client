@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Navbar from "../Components/Navbar";
 import { Link, useLoaderData, useNavigate } from "react-router";
 import MyContainer from "../Components/MyContainer";
@@ -6,11 +6,13 @@ import Footer from "../Components/Footer";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
+import { AuthContext } from "../Context/AuthContext";
 
 const CourseDetails = () => {
   const data = useLoaderData();
   const course = data.result;
   const { title, image, price, duration, category, description, _id } = course;
+  const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -52,15 +54,20 @@ const CourseDetails = () => {
   };
 
   const handleEnroll = () => {
+    if (!user?.email) {
+      toast.error("Please login first");
+      return;
+    }
+
     const enrollInfo = {
       courseId: _id,
       title,
       price,
       image,
-      description,
-      duration,
       category,
-      email: "booksummery2025@gmail.com",
+      duration,
+      description,
+      email: user.email,
     };
 
     fetch(
@@ -78,11 +85,8 @@ const CourseDetails = () => {
         if (data.message === "already enrolled") {
           toast.info("You already enrolled this course");
         } else {
-          toast.success("You have successfully enrolled in the course!");
+          toast.success("Successfully enrolled!");
         }
-      })
-      .catch(() => {
-        toast.error("Something went wrong");
       });
   };
 

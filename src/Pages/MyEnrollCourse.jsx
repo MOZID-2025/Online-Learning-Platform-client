@@ -1,21 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+
 import Navbar from "../Components/Navbar";
 import MyContainer from "../Components/MyContainer";
 import Footer from "../Components/Footer";
+import { AuthContext } from "../Context/AuthContext";
 
 const MyEnrollCourse = () => {
+  const { user, loading } = useContext(AuthContext);
   const [enrolls, setEnrolls] = useState([]);
 
-  const userEmail = "booksummery2025@gmail.com";
-
   useEffect(() => {
+    if (!user) return;
+
+    console.log("loged user email", user.email);
+
     fetch(
-      `https://online-learning-platform-server-ten.vercel.app/my-enroll-courses?email=${userEmail}`
+      `https://online-learning-platform-server-ten.vercel.app/my-enroll-courses?email=${user.email}`
     )
       .then((res) => res.json())
       .then((data) => setEnrolls(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [user]);
+
+  if (loading) {
+    return <p className="text-center mt-20">Loading...</p>;
+  }
 
   return (
     <div>

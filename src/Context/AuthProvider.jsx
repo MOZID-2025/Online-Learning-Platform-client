@@ -32,6 +32,7 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return sendEmailVerification(auth.currentUser);
   };
+
   const createUserWithEmailAndPasswordFunc = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -61,9 +62,12 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return sendPasswordResetEmail(auth, email);
   };
+
   const authInfo = {
     user,
+    loading,
     setUser,
+    setLoading,
     createUserWithEmailAndPasswordFunc,
     signInWithEmailAndPasswordFunc,
     signInWithPopupFunc,
@@ -72,23 +76,21 @@ const AuthProvider = ({ children }) => {
     sendPasswordResetEmailFunc,
     updateProfileFunc,
     sendEmailVerificationFunc,
-    loading,
-    setLoading,
   };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currUser) => {
-      console.log(currUser);
+      console.log("Auth user:", currUser);
       setUser(currUser);
       setLoading(false);
     });
 
-    return () => {
-      unsubscribe();
-    };
+    return () => unsubscribe();
   }, []);
 
-  return <AuthContext value={authInfo}>{children}</AuthContext>;
+  return (
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;
